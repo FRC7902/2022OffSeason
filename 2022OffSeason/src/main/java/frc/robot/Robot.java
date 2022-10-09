@@ -210,8 +210,6 @@ m_leftEncoderSim.setRate(m_driveTrainSim.getLeftVelocityMetersPerSecond());
 m_rightEncoderSim.setDistance(m_driveTrainSim.getRightPositionMeters());
 m_rightEncoderSim.setRate(m_driveTrainSim.getRightVelocityMetersPerSecond());
 m_gyroSim.setAngle(-m_driveTrainSim.getHeading().getDegrees());
-
-m_odometry.update(Rotation2d.fromDegrees(getHeading()), m_leftEncoder.getDistance(), m_rightEncoder.getDistance());
 m_fieldSim.setRobotPose(getPose());
   }
 
