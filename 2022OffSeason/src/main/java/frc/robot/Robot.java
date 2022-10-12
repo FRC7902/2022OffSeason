@@ -67,8 +67,7 @@ public class Robot extends TimedRobot {
   private final AnalogGyro m_gyro = new AnalogGyro(1);
 
   // Simulation Stuff
-  private final DifferentialDriveOdometry m_odometry = new DifferentialDriveOdometry(
-      Rotation2d.fromDegrees(getHeading()), new Pose2d(4, 5, new Rotation2d()));;
+
   private EncoderSim m_leftEncoderSim;
   private EncoderSim m_rightEncoderSim;
   private Field2d m_fieldSim;
