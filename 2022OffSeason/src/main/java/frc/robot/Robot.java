@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-
+// Arjun Change
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -30,11 +30,13 @@ import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-
 /**
- * The VM is configured to automatically run this class, and to call the functions corresponding to
- * each mode, as described in the TimedRobot documentation. If you change the name of this class or
- * the package after creating this project, you must also update the build.gradle file in the
+ * The VM is configured to automatically run this class, and to call the
+ * functions corresponding to
+ * each mode, as described in the TimedRobot documentation. If you change the
+ * name of this class or
+ * the package after creating this project, you must also update the
+ * build.gradle file in the
  * project.
  */
 public class Robot extends TimedRobot {
@@ -51,7 +53,6 @@ public class Robot extends TimedRobot {
 
   private Timer timer = new Timer();
   private Joystick joystick = new Joystick(0);
-  
 
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
@@ -110,29 +111,40 @@ public class Robot extends TimedRobot {
   }
 
   /**
-   * This function is called every 20 ms, no matter the mode. Use this for items like diagnostics
+   * This function is called every 20 ms, no matter the mode. Use this for items
+   * like diagnostics
    * that you want ran during disabled, autonomous, teleoperated and test.
    *
-   * <p>This runs after the mode specific periodic functions, but before LiveWindow and
+   * <p>
+   * This runs after the mode specific periodic functions, but before LiveWindow
+   * and
    * SmartDashboard integrated updating.
    */
   @Override
   public void robotPeriodic() {
-    // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
-    // commands, running already-scheduled commands, removing finished or interrupted commands,
-    // and running subsystem periodic() methods.  This must be called from the robot's periodic
+    // Runs the Scheduler. This is responsible for polling buttons, adding
+    // newly-scheduled
+    // commands, running already-scheduled commands, removing finished or
+    // interrupted commands,
+    // and running subsystem periodic() methods. This must be called from the
+    // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+  }
 
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+  }
 
-  /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
+  /**
+   * This autonomous runs the autonomous command selected by your
+   * {@link RobotContainer} class.
+   */
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
@@ -140,7 +152,7 @@ public class Robot extends TimedRobot {
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
-      
+
     }
   }
 
@@ -150,19 +162,19 @@ public class Robot extends TimedRobot {
     switch (m_autoSelected) {
       case kCustomAuto:
         // Put custom auto code here
-        if(timer.get() < 2){
+        if (timer.get() < 2) {
           drive.arcadeDrive(0, 1);
-        }else if(timer.get() < 7){
+        } else if (timer.get() < 7) {
           drive.arcadeDrive(1, 0);
-        }
-        else{
+        } else {
           drive.arcadeDrive(0, 0);
         }
         break;
       case kDefaultAuto:
       default:
         // Put default auto code here
-        break;}
+        break;
+    }
   }
 
   @Override
@@ -179,7 +191,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    drive.arcadeDrive(-joystick.getX()*0.5, -joystick.getY() );
+    drive.arcadeDrive(-joystick.getX() * 0.5, -joystick.getY());
   }
 
   @Override
@@ -190,28 +202,30 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during test mode. */
   @Override
-  public void testPeriodic() {}
+  public void testPeriodic() {
+  }
 
   /** This function is called once when the robot is first started up. */
   @Override
-  public void simulationInit() {}
+  public void simulationInit() {
+  }
 
   /** This function is called periodically whilst in simulation. */
   @Override
   public void simulationPeriodic() {
     m_driveTrainSim.setInputs(left.get() * RobotController.getBatteryVoltage(),
-    right.get() * RobotController.getBatteryVoltage());
+        right.get() * RobotController.getBatteryVoltage());
 
-// Run and update simulation
-m_driveTrainSim.update(0.02);
-m_leftEncoderSim.setDistance(m_driveTrainSim.getLeftPositionMeters());
-m_leftEncoderSim.setRate(m_driveTrainSim.getLeftVelocityMetersPerSecond());
-m_rightEncoderSim.setDistance(m_driveTrainSim.getRightPositionMeters());
-m_rightEncoderSim.setRate(m_driveTrainSim.getRightVelocityMetersPerSecond());
-m_gyroSim.setAngle(-m_driveTrainSim.getHeading().getDegrees());
+    // Run and update simulation
+    m_driveTrainSim.update(0.02);
+    m_leftEncoderSim.setDistance(m_driveTrainSim.getLeftPositionMeters());
+    m_leftEncoderSim.setRate(m_driveTrainSim.getLeftVelocityMetersPerSecond());
+    m_rightEncoderSim.setDistance(m_driveTrainSim.getRightPositionMeters());
+    m_rightEncoderSim.setRate(m_driveTrainSim.getRightVelocityMetersPerSecond());
+    m_gyroSim.setAngle(-m_driveTrainSim.getHeading().getDegrees());
 
-m_odometry.update(Rotation2d.fromDegrees(getHeading()), m_leftEncoder.getDistance(), m_rightEncoder.getDistance());
-m_fieldSim.setRobotPose(getPose());
+    m_odometry.update(Rotation2d.fromDegrees(getHeading()), m_leftEncoder.getDistance(), m_rightEncoder.getDistance());
+    m_fieldSim.setRobotPose(getPose());
   }
 
   public Pose2d getPose() {
