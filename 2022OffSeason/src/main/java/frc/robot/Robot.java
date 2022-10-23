@@ -10,10 +10,9 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
-
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.RobotController;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
@@ -46,8 +45,8 @@ public class Robot extends TimedRobot {
   private PWMVictorSPX right1 = new PWMVictorSPX(2);
   private PWMVictorSPX right2 = new PWMVictorSPX(3);
 
-  private SpeedControllerGroup left = new SpeedControllerGroup(left1, left2);
-  private SpeedControllerGroup right = new SpeedControllerGroup(right1, right2);
+  private MotorControllerGroup left = new MotorControllerGroup(left1, left2);
+  private MotorControllerGroup right = new MotorControllerGroup(right1, right2);
 
   private DifferentialDrive drive = new DifferentialDrive(left, right);
 
