@@ -203,6 +203,10 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     drive.arcadeDrive(-joystick.getX() * 0.5, -joystick.getY());
+    left.set(-joystick.getRawAxis(1) - joystick.getRawAxis(0));
+    right.set(-joystick.getRawAxis(1) + joystick.getRawAxis(0));
+    left.set(0.5);
+    right.set(0.5);
   }
 
   @Override
