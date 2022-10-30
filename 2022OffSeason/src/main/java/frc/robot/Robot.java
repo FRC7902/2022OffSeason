@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
+import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
@@ -41,7 +42,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private PWMVictorSPX left1 = new PWMVictorSPX(0);
-  private PWMVictorSPX left2 = new PWMVictorSPX(1);
+  private PWMVictorSPX left2 = new PWMVictorSPX (1);
   private PWMVictorSPX right1 = new PWMVictorSPX(2);
   private PWMVictorSPX right2 = new PWMVictorSPX(3);
 
