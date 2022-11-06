@@ -56,7 +56,6 @@ public class Robot extends TimedRobot {
 
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
-  private static final KitbotWheelSize KitbotWheelSize = null;
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
@@ -109,8 +108,7 @@ public class Robot extends TimedRobot {
 
     if (!RobotBase.isReal()) {
       // Set up robot simulation
-      m_driveTrainSim = DifferentialDrivetrainSim.createKitbotSim(KitbotMotor.kDualCIMPerSide, KitbotGearing.k10p71,
-          KitbotWheelSize, null);
+      m_driveTrainSim = DifferentialDrivetrainSim.createKitbotSim(KitbotMotor.kDualCIMPerSide, KitbotGearing.k10p71, KitbotWheelSize.kSixInch, null);
       m_fieldSim = new Field2d();
       SmartDashboard.putData("Field", m_fieldSim);
 
@@ -223,6 +221,7 @@ public class Robot extends TimedRobot {
   /** This function is called once when the robot is first started up. */
   @Override
   public void simulationInit() {
+  
   }
 
   /** This function is called periodically whilst in simulation. */
