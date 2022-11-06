@@ -41,14 +41,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
+
+  //We have four motors, each with a VictorSPX controller
   private PWMVictorSPX left1 = new PWMVictorSPX(0);
   private PWMVictorSPX left2 = new PWMVictorSPX(1);
   private PWMVictorSPX right1 = new PWMVictorSPX(2);
   private PWMVictorSPX right2 = new PWMVictorSPX(3);
 
+  //Chain two lefts and chain two rights to form two groups
   private MotorControllerGroup left = new MotorControllerGroup(left1, left2);
   private MotorControllerGroup right = new MotorControllerGroup(right1, right2);
 
+  //Create a differential drive with two groups of motors
   private DifferentialDrive drive = new DifferentialDrive(left, right);
 
   private Timer timer = new Timer();
@@ -93,6 +97,9 @@ public class Robot extends TimedRobot {
     // and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+    //Invert right motor for proper tank drive
+    //TODO check if this needs to be done before instantiating DifferentialDrive
     right.setInverted(true);
 
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
@@ -200,11 +207,9 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
+
+    //Drive our differentialDrive with leftspeed stick and right turn stick
     drive.arcadeDrive(-joystick.getX() * 0.5, -joystick.getY());
-    left.set(-joystick.getRawAxis(1) - joystick.getRawAxis(0));
-    right.set(-joystick.getRawAxis(1) + joystick.getRawAxis(0));
-    left.set(0.5);
-    right.set(0.5);
   }
 
   @Override
