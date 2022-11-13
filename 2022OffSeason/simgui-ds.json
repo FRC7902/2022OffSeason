@@ -3,12 +3,12 @@
     {
       "axisConfig": [
         {
-          "decKey": 65,
-          "incKey": 68
+          "decKey": 264,
+          "incKey": 265
         },
         {
-          "decKey": 87,
-          "incKey": 83
+          "decKey": 262,
+          "incKey": 263
         },
         {
           "decKey": 69,
@@ -20,10 +20,10 @@
       "axisCount": 3,
       "buttonCount": 4,
       "buttonKeys": [
-        265,
-        262,
-        263,
-        264
+        -1,
+        -1,
+        -1,
+        -1
       ],
       "povConfig": [
         {
