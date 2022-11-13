@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -56,7 +57,7 @@ public class Robot extends TimedRobot {
 
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
-  private static final KitbotWheelSize KitbotWheelSize = null;
+  private static final String kArjunAuto = "Arjun Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
@@ -99,6 +100,7 @@ public class Robot extends TimedRobot {
 
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
+    m_chooser.addOption("Arjun's Cool auto", kArjunAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
     // Set Encoder pulses
@@ -110,7 +112,7 @@ public class Robot extends TimedRobot {
     if (!RobotBase.isReal()) {
       // Set up robot simulation
       m_driveTrainSim = DifferentialDrivetrainSim.createKitbotSim(KitbotMotor.kDualCIMPerSide, KitbotGearing.k10p71,
-          KitbotWheelSize, null);
+          KitbotWheelSize.kSixInch, null);
       m_fieldSim = new Field2d();
       SmartDashboard.putData("Field", m_fieldSim);
 
@@ -182,6 +184,13 @@ public class Robot extends TimedRobot {
         }
         break;
       case kDefaultAuto:
+
+      break;
+
+      case kArjunAuto:
+
+      break;
+
       default:
         // Put default auto code here
         break;
@@ -202,11 +211,8 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    drive.arcadeDrive(-joystick.getX() * 0.5, -joystick.getY());
-    left.set(-joystick.getRawAxis(1) - joystick.getRawAxis(0));
-    right.set(-joystick.getRawAxis(1) + joystick.getRawAxis(0));
-    left.set(0.5);
-    right.set(0.5);
+    drive.arcadeDrive(joystick.getX(), 0.5*joystick.getY());
+  
   }
 
   @Override
@@ -233,14 +239,17 @@ public class Robot extends TimedRobot {
 
     // Run and update simulation
     m_driveTrainSim.update(0.02);
+
     m_leftEncoderSim.setDistance(m_driveTrainSim.getLeftPositionMeters());
     m_leftEncoderSim.setRate(m_driveTrainSim.getLeftVelocityMetersPerSecond());
     m_rightEncoderSim.setDistance(m_driveTrainSim.getRightPositionMeters());
     m_rightEncoderSim.setRate(m_driveTrainSim.getRightVelocityMetersPerSecond());
-    m_gyroSim.setAngle(-m_driveTrainSim.getHeading().getDegrees());
+
+    m_gyroSim.setAngle(m_driveTrainSim.getHeading().getDegrees());
 
     m_odometry.update(Rotation2d.fromDegrees(getHeading()), m_leftEncoder.getDistance(), m_rightEncoder.getDistance());
     m_fieldSim.setRobotPose(getPose());
+
   }
 
   public Pose2d getPose() {
