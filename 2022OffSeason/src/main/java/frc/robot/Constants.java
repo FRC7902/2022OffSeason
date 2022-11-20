@@ -44,6 +44,8 @@ public final class Constants {
 
         public final static int ElevatorCAN = 1;
 
+        public final static int ElevatorCurrentLimit = 25;
+
     }
 
 }

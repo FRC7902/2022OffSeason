@@ -17,7 +17,8 @@ public class ElevatorSubsystem extends SubsystemBase {
 
   public ElevatorSubsystem() {
 
-    elevatorMotor.setSmartCurrentLimit(25);
+    // Sets current limit
+    elevatorMotor.setSmartCurrentLimit(Constants.ElevatorConstants.ElevatorCurrentLimit);
 
   }
 
@@ -26,7 +27,7 @@ public class ElevatorSubsystem extends SubsystemBase {
 
 
       elevatorMotor.set(power);
-      
+
   }
 
  
