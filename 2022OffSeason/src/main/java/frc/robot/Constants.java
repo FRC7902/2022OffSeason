@@ -18,27 +18,21 @@ package frc.robot;
  */
 public final class Constants {
 
-    public final static class DriveConstants {
+    public static final class DriveConstants{
 
-        // PWM ports for drive motors
-        public static final int kLeftLeader = 0;
-        public static final int kLeftFollower = 1;
-        public static final int kRightLeader = 2;
-        public static final int kRightFollower = 3;
+        public final static int DrivetrainRightLeaderCAN = 3;
+        public final static int DrivetrainRightFollowerCAN = 4;
 
+        public final static int DrivetrainLeftLeaderCAN = 11;
+        public final static int DrivetrainLeftFollowerCAN = 12;
+    }
 
-        public static final int kLeftEncoderA = 0;
-        public static final int kLeftEncoderB = 1; 
-        public static final int kLeftEncoderIndex = 2;
+    public final static class ShooterConstants{
+        public final static int ShooterLeaderCAN = 8;
+        public final static int ShooterFollowerCAN = 9;
 
-        public static final int kRightEncoderA = 3; 
-        public static final int kRightEncoderB = 4; 
-        public static final int kRightEncoderIndex = 5;
-
-        public static final int gyroChannel = 1;
-
-
-
+        //for every 3.75 rotations of input, output rotates once
+        public final static double ShooterOutputGearRatio = 3.75;
     }
 
 }
