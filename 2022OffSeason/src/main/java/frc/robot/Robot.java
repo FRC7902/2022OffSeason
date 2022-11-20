@@ -29,6 +29,7 @@ import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim.KitbotWheelSiz
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Constants;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -41,15 +42,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-  private PWMVictorSPX left1 = new PWMVictorSPX(0);
-  private PWMVictorSPX left2 = new PWMVictorSPX (1);
-  private PWMVictorSPX right1 = new PWMVictorSPX(2);
-  private PWMVictorSPX right2 = new PWMVictorSPX(3);
-
-  private MotorControllerGroup left = new MotorControllerGroup(left1, left2);
-  private MotorControllerGroup right = new MotorControllerGroup(right1, right2);
-
-  private DifferentialDrive drive = new DifferentialDrive(left, right);
+  private RobotContainer m_robotContainer;
 
   private Timer timer = new Timer();
   private Joystick joystick = new Joystick(0);
@@ -58,30 +51,6 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-
-  // Encoders
-  private final Encoder m_leftEncoder = new Encoder(0, 1, 2);
-  private final Encoder m_rightEncoder = new Encoder(3, 4, 5);
-
-  // Gyro
-  private final AnalogGyro m_gyro = new AnalogGyro(1);
-
-  // Simulation Stuff
-
-  private EncoderSim m_leftEncoderSim;
-  private EncoderSim m_rightEncoderSim;
-  private Field2d m_fieldSim;
-  private AnalogGyroSim m_gyroSim;
-  public DifferentialDrivetrainSim m_driveTrainSim;
-  private RobotContainer m_robotContainer;
-
-  private final DifferentialDriveOdometry m_odometry = new DifferentialDriveOdometry(
-    Rotation2d.fromDegrees(getHeading()), 
-    new Pose2d(4, 5, new Rotation2d())
-  );
- 
-
-  
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -94,29 +63,11 @@ public class Robot extends TimedRobot {
     // and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    right.setInverted(true);
 
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
-    // Set Encoder pulses
-    m_leftEncoder.setDistancePerPulse((0.1524 * Math.PI) / (double) 1024);
-    m_rightEncoder.setDistancePerPulse((0.1524 * Math.PI) / (double) 1024);
-    m_leftEncoder.reset();
-    m_rightEncoder.reset();
-
-    if (!RobotBase.isReal()) {
-      // Set up robot simulation
-      m_driveTrainSim = DifferentialDrivetrainSim.createKitbotSim(KitbotMotor.kDualCIMPerSide, KitbotGearing.k10p71, KitbotWheelSize.kSixInch, null);
-      m_fieldSim = new Field2d();
-      SmartDashboard.putData("Field", m_fieldSim);
-
-      // Connect the simulators with their counterparts
-      m_leftEncoderSim = new EncoderSim(m_leftEncoder);
-      m_rightEncoderSim = new EncoderSim(m_rightEncoder);
-      m_gyroSim = new AnalogGyroSim(m_gyro);
-    }
   }
 
   /**
@@ -168,22 +119,22 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    switch (m_autoSelected) {
-      case kCustomAuto:
-        // Put custom auto code here
-        if (timer.get() < 2) {
-          drive.arcadeDrive(0, 1);
-        } else if (timer.get() < 7) {
-          drive.arcadeDrive(1, 0);
-        } else {
-          drive.arcadeDrive(0, 0);
-        }
-        break;
-      case kDefaultAuto:
-      default:
-        // Put default auto code here
-        break;
-    }
+    // switch (m_autoSelected) {
+    // case kCustomAuto:
+    // // Put custom auto code here
+    // if (timer.get() < 2) {
+    // drive.arcadeDrive(0, 1);
+    // } else if (timer.get() < 7) {
+    // drive.arcadeDrive(1, 0);
+    // } else {
+    // drive.arcadeDrive(0, 0);
+    // }
+    // break;
+    // case kDefaultAuto:
+    // default:
+    // // Put default auto code here
+    // break;
+    // }
   }
 
   @Override
@@ -200,7 +151,6 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    drive.arcadeDrive(-joystick.getX() * 0.5, -joystick.getY());
 
   }
 
@@ -218,37 +168,15 @@ public class Robot extends TimedRobot {
   /** This function is called once when the robot is first started up. */
   @Override
   public void simulationInit() {
-  
+
   }
 
   /** This function is called periodically whilst in simulation. */
   @Override
   public void simulationPeriodic() {
-    m_driveTrainSim.setInputs(left.get() * RobotController.getBatteryVoltage(),
-        right.get() * RobotController.getBatteryVoltage());
+    // m_driveTrainSim.setInputs(left.get() * RobotController.getBatteryVoltage(),
+    // right.get() * RobotController.getBatteryVoltage());
 
-    // Run and update simulation
-    m_driveTrainSim.update(0.02);
-    m_leftEncoderSim.setDistance(m_driveTrainSim.getLeftPositionMeters());
-    m_leftEncoderSim.setRate(m_driveTrainSim.getLeftVelocityMetersPerSecond());
-    m_rightEncoderSim.setDistance(m_driveTrainSim.getRightPositionMeters());
-    m_rightEncoderSim.setRate(m_driveTrainSim.getRightVelocityMetersPerSecond());
-    m_gyroSim.setAngle(-m_driveTrainSim.getHeading().getDegrees());
-
-    m_odometry.update(Rotation2d.fromDegrees(getHeading()), m_leftEncoder.getDistance(), m_rightEncoder.getDistance());
-    m_fieldSim.setRobotPose(getPose());
-  }
-
-  public Pose2d getPose() {
-    return m_odometry.getPoseMeters();
-  }
-
-
-  // get the heading angle from the gyro
-  public double getHeading() {
-    return Math.IEEEremainder(m_gyro.getAngle(), 360);
   }
 
 }
-
-
