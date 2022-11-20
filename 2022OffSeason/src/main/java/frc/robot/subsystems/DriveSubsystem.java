@@ -29,28 +29,28 @@ import edu.wpi.first.wpilibj.RobotBase;
 public class DriveSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
 
-  private final PWMVictorSPX m_leftLeader = new PWMVictorSPX(Constants.DriveConstants.kLeftLeader);
-  private final PWMVictorSPX m_leftFollower = new PWMVictorSPX(Constants.DriveConstants.kLeftFollower);
-  private final PWMVictorSPX m_rightLeader = new PWMVictorSPX(Constants.DriveConstants.kRightLeader);
-  private final PWMVictorSPX m_rightFollower = new PWMVictorSPX(Constants.DriveConstants.kRightFollower);
+  private final PWMVictorSPX m_leftLeader = new PWMVictorSPX(Constants.DriveConstants.DrivetrainLeftLeaderCAN);
+  private final PWMVictorSPX m_leftFollower = new PWMVictorSPX(Constants.DriveConstants.DrivetrainLeftFollowerCAN);
+  private final PWMVictorSPX m_rightLeader = new PWMVictorSPX(Constants.DriveConstants.DrivetrainRightLeaderCAN);
+  private final PWMVictorSPX m_rightFollower = new PWMVictorSPX(Constants.DriveConstants.DrivetrainRightFollowerCAN);
 
   private final MotorControllerGroup left = new MotorControllerGroup(m_leftLeader, m_leftFollower);
   private final MotorControllerGroup right = new MotorControllerGroup(m_rightLeader, m_rightFollower);
 
   private final DifferentialDrive drive = new DifferentialDrive(left, right);
 
-  // Encoders
-  private final Encoder m_leftEncoder = new Encoder(
-      Constants.DriveConstants.kLeftEncoderA,
-      Constants.DriveConstants.kLeftEncoderB,
-      Constants.DriveConstants.kLeftEncoderIndex);
-  private final Encoder m_rightEncoder = new Encoder(
-      Constants.DriveConstants.kRightEncoderA,
-      Constants.DriveConstants.kRightEncoderB,
-      Constants.DriveConstants.kRightEncoderIndex);
+  // // Encoders
+  // private final Encoder m_leftEncoder = new Encoder(
+  //     Constants.DriveConstants.kLeftEncoderA,
+  //     Constants.DriveConstants.kLeftEncoderB,
+  //     Constants.DriveConstants.kLeftEncoderIndex);
+  // private final Encoder m_rightEncoder = new Encoder(
+  //     Constants.DriveConstants.kRightEncoderA,
+  //     Constants.DriveConstants.kRightEncoderB,
+  //     Constants.DriveConstants.kRightEncoderIndex);
 
   // Gyro
-  private final AnalogGyro m_gyro = new AnalogGyro(Constants.DriveConstants.gyroChannel);
+  // private final AnalogGyro m_gyro = new AnalogGyro(Constants.DriveConstants.gyroChannel);
 
   // Simulation Stuff
   private EncoderSim m_leftEncoderSim;
@@ -58,9 +58,9 @@ public class DriveSubsystem extends SubsystemBase {
   private Field2d m_fieldSim;
   private AnalogGyroSim m_gyroSim;
   public DifferentialDrivetrainSim m_driveTrainSim;
-  private final DifferentialDriveOdometry m_odometry = new DifferentialDriveOdometry(
-      Rotation2d.fromDegrees(getHeading()),
-      new Pose2d(4, 5, new Rotation2d()));
+  // private final DifferentialDriveOdometry m_odometry = new DifferentialDriveOdometry(
+  //     Rotation2d.fromDegrees(getHeading()),
+  //     new Pose2d(4, 5, new Rotation2d()));
 
   public DriveSubsystem() {
 
@@ -68,10 +68,10 @@ public class DriveSubsystem extends SubsystemBase {
 
 
     // Set Encoder pulses
-    m_leftEncoder.setDistancePerPulse((0.1524 * Math.PI) / (double) 1024);
-    m_rightEncoder.setDistancePerPulse((0.1524 * Math.PI) / (double) 1024);
-    m_leftEncoder.reset();
-    m_rightEncoder.reset();
+    // m_leftEncoder.setDistancePerPulse((0.1524 * Math.PI) / (double) 1024);
+    // m_rightEncoder.setDistancePerPulse((0.1524 * Math.PI) / (double) 1024);
+    // m_leftEncoder.reset();
+    // m_rightEncoder.reset();
     
     
     if (RobotBase.isSimulation()) {
@@ -83,9 +83,9 @@ public class DriveSubsystem extends SubsystemBase {
       SmartDashboard.putData("Field", m_fieldSim);
 
       // Connect the simulators with their counterparts
-      m_leftEncoderSim = new EncoderSim(m_leftEncoder);
-      m_rightEncoderSim = new EncoderSim(m_rightEncoder);
-      m_gyroSim = new AnalogGyroSim(m_gyro);
+      // m_leftEncoderSim = new EncoderSim(m_leftEncoder);
+      // m_rightEncoderSim = new EncoderSim(m_rightEncoder);
+      // m_gyroSim = new AnalogGyroSim(m_gyro);
     }
 
   }
@@ -96,23 +96,23 @@ public class DriveSubsystem extends SubsystemBase {
 
   }
 
-  public Pose2d getPose() {
-    return m_odometry.getPoseMeters();
-  }
+  // public Pose2d getPose() {
+  //   return m_odometry.getPoseMeters();
+  // }
 
   // get the heading angle from the gyro
-  public double getHeading() {
-    return Math.IEEEremainder(m_gyro.getAngle(), 360);
-  }
+  // public double getHeading() {
+  //   return Math.IEEEremainder(m_gyro.getAngle(), 360);
+  // }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
 
-    if (RobotBase.isSimulation()){
-      m_odometry.update(Rotation2d.fromDegrees(getHeading()), m_leftEncoder.getDistance(), m_rightEncoder.getDistance());
-      m_fieldSim.setRobotPose(getPose());
-    }
+    // if (RobotBase.isSimulation()){
+    //   m_odometry.update(Rotation2d.fromDegrees(getHeading()), m_leftEncoder.getDistance(), m_rightEncoder.getDistance());
+    //   m_fieldSim.setRobotPose(getPose());
+    // }
 
   }
 
