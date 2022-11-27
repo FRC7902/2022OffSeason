@@ -19,6 +19,8 @@ import edu.wpi.first.wpilibj.simulation.AnalogGyroSim;
 import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
 import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim.*;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
@@ -29,10 +31,10 @@ import edu.wpi.first.wpilibj.RobotBase;
 public class DriveSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
 
-  private final PWMVictorSPX m_leftLeader = new PWMVictorSPX(Constants.DriveConstants.DrivetrainLeftLeaderCAN);
-  private final PWMVictorSPX m_leftFollower = new PWMVictorSPX(Constants.DriveConstants.DrivetrainLeftFollowerCAN);
-  private final PWMVictorSPX m_rightLeader = new PWMVictorSPX(Constants.DriveConstants.DrivetrainRightLeaderCAN);
-  private final PWMVictorSPX m_rightFollower = new PWMVictorSPX(Constants.DriveConstants.DrivetrainRightFollowerCAN);
+  private final WPI_VictorSPX m_leftLeader = new WPI_VictorSPX(Constants.DriveConstants.DrivetrainLeftLeaderCAN);
+  private final WPI_VictorSPX m_leftFollower = new WPI_VictorSPX(Constants.DriveConstants.DrivetrainLeftFollowerCAN);
+  private final WPI_VictorSPX m_rightLeader = new WPI_VictorSPX(Constants.DriveConstants.DrivetrainRightLeaderCAN);
+  private final WPI_VictorSPX m_rightFollower = new WPI_VictorSPX(Constants.DriveConstants.DrivetrainRightFollowerCAN);
 
   private final MotorControllerGroup left = new MotorControllerGroup(m_leftLeader, m_leftFollower);
   private final MotorControllerGroup right = new MotorControllerGroup(m_rightLeader, m_rightFollower);
@@ -95,6 +97,8 @@ public class DriveSubsystem extends SubsystemBase {
     drive.arcadeDrive(xForward, zRotation);
 
   }
+
+  
 
   // public Pose2d getPose() {
   //   return m_odometry.getPoseMeters();
