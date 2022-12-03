@@ -12,4 +12,24 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {}
+public final class Constants {
+
+    public final static class DriveConstants{
+
+        public final static int DrivetrainRightLeaderCAN  =3;
+        public final static int DrivetrainRightFollowerCAN = 4;
+
+        public final static int DrivetrainLeftLeaderCAN = 11;
+        public final static int DrivetrainLeftFollowerCAN = 12;
+    }
+
+    public final static class ShooterConstants{
+        public final static int ShooterLeaderCAN = 8;
+        public final static int ShooterFollowerCAN = 9;
+
+        // Gearing ratio between output shaft and input motor
+        //every 3.75 rotations of input, output spins once
+        public final static double ShooterOutputGearRatio = 3.75;
+
+    }
+}
