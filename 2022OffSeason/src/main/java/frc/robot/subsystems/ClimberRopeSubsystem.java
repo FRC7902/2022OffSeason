@@ -16,6 +16,8 @@ public class ClimberRopeSubsystem extends SubsystemBase {
 
   public ClimberRopeSubsystem() {
       mainClimberRopeMotor.setSmartCurrentLimit(Constants.ClimberRopeConstants.Rope1CurrentLimit);
+      mainClimberRopeMotor.setInverted(true);
+      adjustmentRopeMotor.setInverted(true);
   }
 
   public void setMainClimberPower(double power){

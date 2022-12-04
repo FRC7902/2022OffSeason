@@ -11,7 +11,9 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 public class TransferSubsystem extends SubsystemBase {
   private final WPI_VictorSPX transferMotor = new WPI_VictorSPX(Constants.TransferConstants.TransferCAN);
-  public TransferSubsystem() {}
+  public TransferSubsystem() {
+    transferMotor.setInverted(false);
+  }
 
   public void setPower(double power){
       transferMotor.set(power);

@@ -13,12 +13,15 @@ public class IntakeSubsystem extends SubsystemBase {
   private final WPI_VictorSPX powerMotor = new WPI_VictorSPX(Constants.IntakeConstants.IntakePowerCAN);
   private final WPI_VictorSPX deploymentMotor = new WPI_VictorSPX(Constants.IntakeConstants.IntakeDeploymentCAN);
 
-  public IntakeSubsystem() {}
+  public IntakeSubsystem() {
+    powerMotor.setInverted(true);
+    deploymentMotor.setInverted(true);
+  }
 
   public void setIntakePower(double power){
       powerMotor.set(power);
   }
-  public void setDeploymentPower2(double power){
+  public void setDeploymentPower(double power){
       deploymentMotor.set(power);
   }
   public void stopPowerMotor(){

@@ -12,6 +12,7 @@ public class ElevatorSubsystem extends SubsystemBase {
 
   public ElevatorSubsystem() {
       elevatorMotor.setSmartCurrentLimit(Constants.ElevatorConstants.ElevatorCurrentLimit);
+      elevatorMotor.setInverted(false);
   }
   public void setPower(double power){
     elevatorMotor.set(power);

@@ -87,7 +87,6 @@ public class DriveSubsystem extends SubsystemBase {
       // m_rightEncoderSim = new EncoderSim(m_rightEncoder);
       // m_gyroSim = new AnalogGyroSim(m_gyro);
     }
-
   }
 
   public void driveArcade(double xForward, double zRotation) {

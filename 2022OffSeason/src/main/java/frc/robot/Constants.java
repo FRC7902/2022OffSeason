@@ -19,6 +19,9 @@ public final class Constants {
 
         public final static int DrivetrainLeftLeaderCAN = 11;
         public final static int DrivetrainLeftFollowerCAN = 12;
+
+        public final static int CurrentLimit = 50;
+        
     }
     public final static class ShooterConstants{
         public final static int ShooterLeaderCAN = 8;
