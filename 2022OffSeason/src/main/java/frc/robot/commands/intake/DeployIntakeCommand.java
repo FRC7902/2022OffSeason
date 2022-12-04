@@ -1,26 +1,23 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
+package frc.robot.commands.intake;
 
-package frc.robot.commands;
-
-import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-/** An example command that uses an example subsystem. */
-public class DriveCommand extends CommandBase {
+public class DeployIntakeCommand extends CommandBase {
   @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
-  private final DriveSubsystem m_subsystem;
+  private final IntakeSubsystem m_intakeSubsystem;
 
   /**
    * Creates a new ExampleCommand.
    *
-   * @param subsystem The subsystem used by this command.
+   * @param intakeSubsystem The subsystem used by this command.
    */
-  public DriveCommand(DriveSubsystem subsystem) {
-    m_subsystem = subsystem;
+  public DeployIntakeCommand(IntakeSubsystem intakeSubsystem) {
+    m_intakeSubsystem = intakeSubsystem;
+
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+    //addRequirements(intakeSubsystem);
+    addRequirements(intakeSubsystem);
   }
 
   // Called when the command is initially scheduled.

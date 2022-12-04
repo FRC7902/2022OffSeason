@@ -58,7 +58,6 @@ public class TimedDriveWithSpeed extends CommandBase {
         }
     }
 
-
     @Override
     public boolean isFinished(){
 
