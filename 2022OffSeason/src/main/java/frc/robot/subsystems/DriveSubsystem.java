@@ -28,15 +28,15 @@ import edu.wpi.first.wpilibj.RobotBase;
 
 public class DriveSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-
   private final PWMVictorSPX m_leftLeader = new PWMVictorSPX(Constants.DriveConstants.kLeftLeader);
-  private final PWMVictorSPX m_leftFollower = new PWMVictorSPX(Constants.DriveConstants.kLeftFollower);
-  private final PWMVictorSPX m_rightLeader = new PWMVictorSPX(Constants.DriveConstants.kRightLeader);
-  private final PWMVictorSPX m_rightFollower = new PWMVictorSPX(Constants.DriveConstants.kRightFollower);
+  private final PWMVictorSPX m_leftFollower = new PWMVictorSPX(Constants.DriveConstants.kLeftLeader);
+  private final PWMVictorSPX m_rightLeader = new PWMVictorSPX(Constants.DriveConstants.kLeftLeader);
+  private final PWMVictorSPX m_rightFollower = new PWMVictorSPX(Constants.DriveConstants.kLeftLeader);
 
   private final MotorControllerGroup left = new MotorControllerGroup(m_leftLeader, m_leftFollower);
   private final MotorControllerGroup right = new MotorControllerGroup(m_rightLeader, m_rightFollower);
 
+  //differential drive: a robot with both left and right wheels
   private final DifferentialDrive drive = new DifferentialDrive(left, right);
 
   // Encoders
