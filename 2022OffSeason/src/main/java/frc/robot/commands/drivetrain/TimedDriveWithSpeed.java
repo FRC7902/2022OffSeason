@@ -38,5 +38,5 @@ public class TimedDriveWithSpeed extends CommandBase {
     public boolean isFinished(){
         return timer.get() >= time;
     }
-
+    
 }
