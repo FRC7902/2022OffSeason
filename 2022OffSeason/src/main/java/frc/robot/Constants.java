@@ -35,4 +35,19 @@ public final class Constants {
         public final static double ShooterOutputGearRatio = 3.75;
     }
 
+    public final static class TransferConstants{
+        public final static int TransferVertical = 5;
+        public final static double TransferVerticalGearRatio = 7;
+    }
+
+    public final static class ClimberRopeConstants{
+        public final static int ClimberRopeAdjustment = 2;
+        public final static int ClimberRopeMain = 14;
+
+        public final static double ClimberRopeAdjustmentGearRatio = 28;
+        public final static double ClimberRopeMainGearRatio = 48;
+    }
+
+
+
 }
