@@ -10,21 +10,30 @@ public class TransferSubsystem extends SubsystemBase{
     
     private final WPI_VictorSPX transferController = new WPI_VictorSPX(Constants.TransferConstants.TransferVertical);
 
+    public TransferSubsystem(){
+        transferController.setInverted(true);
+    }
+
+
   //Sets output power
   //double power in range [-1, 1]
-  public void setPower(double power){
+  public void setTransferPower(double power){
 
     //set output power of motor to input speed
     transferController.set(power);
 
   }
 
-  //stops the motor
-  public void stopMotors(){
+  public void stopTransfer(){
 
-    //stops motor
-    transferController.stopMotor();
+    transferController.set(0);
 
+  }
+
+  public void setSpeed(double speed){
+    transferController.set(speed);
+    //speed > 0, transferring up
+    //speed < 0, transferring down
   }
 
   @Override

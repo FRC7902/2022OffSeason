@@ -30,7 +30,7 @@ public class ShooterSubsystem extends SubsystemBase {
   public void setPower(double power){
 
     //set output power of motor to input speed
-    leaderMotor.set(power);
+    leaderMotor.set(0);
 
   }
 

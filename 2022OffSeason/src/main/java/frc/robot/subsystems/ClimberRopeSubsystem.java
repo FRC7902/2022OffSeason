@@ -11,7 +11,7 @@ public class ClimberRopeSubsystem extends SubsystemBase{
 
     //Sets output power
     //double power in range [-1, 1]
-    public void setPower(double power){
+    public void setClimberPower(double power){
   
       //set output power of motor to input speed
       ClimberRopeAdjustment.set(power);
@@ -19,10 +19,10 @@ public class ClimberRopeSubsystem extends SubsystemBase{
     }
   
     //stops the motor
-    public void stopMotors(){
+    public void stopClimber(){
   
       //stops motor
-      ClimberRopeAdjustment.stopMotor();
+      ClimberRopeAdjustment.set(0);
   
     }
   
