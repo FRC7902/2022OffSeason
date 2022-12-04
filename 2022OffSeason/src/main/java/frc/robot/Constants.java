@@ -21,10 +21,10 @@ public final class Constants {
     public final static class DriveConstants {
         //CAN
         // PWM ports for drive motors
-        public static final int kLeftLeader = 0;
-        public static final int kLeftFollower = 1;
-        public static final int kRightLeader = 2;
-        public static final int kRightFollower = 3;
+        public static final int kLeftLeader = 1;
+        public static final int kLeftFollower = 2;
+        public static final int kRightLeader = 11;
+        public static final int kRightFollower = 12;
 
 
         public static final int kLeftEncoderA = 0;
@@ -36,9 +36,14 @@ public final class Constants {
         public static final int kRightEncoderIndex = 5;
 
         public static final int gyroChannel = 1;
+    }
+    public final static class ShooterConstants{
+        
 
-
-
+    }
+    public final static class TransferConstants{
+        public static final int kTransferCAN = 5;
+        public static final double kRampTime = 0;
     }
 
 }
