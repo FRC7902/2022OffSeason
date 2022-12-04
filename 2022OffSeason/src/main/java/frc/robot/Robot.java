@@ -44,6 +44,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
 
+  //
   private Timer timer = new Timer();
   private Joystick joystick = new Joystick(0);
 
@@ -115,7 +116,6 @@ public class Robot extends TimedRobot {
 
     }
   }
-
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
@@ -135,6 +135,7 @@ public class Robot extends TimedRobot {
     // // Put default auto code here
     // break;
     // }
+
   }
 
   @Override
@@ -151,6 +152,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
+
 
   }
 

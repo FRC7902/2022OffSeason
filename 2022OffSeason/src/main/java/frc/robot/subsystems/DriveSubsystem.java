@@ -4,6 +4,15 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.TalonSRXSimCollection;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.ctre.phoenix.sensors.BasePigeonSimCollection;
+import com.ctre.phoenix.sensors.WPI_PigeonIMU;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
@@ -29,10 +38,10 @@ import edu.wpi.first.wpilibj.RobotBase;
 public class DriveSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
   private final PWMVictorSPX m_leftLeader = new PWMVictorSPX(Constants.DriveConstants.kLeftLeader);
-  private final PWMVictorSPX m_leftFollower = new PWMVictorSPX(Constants.DriveConstants.kLeftLeader);
-  private final PWMVictorSPX m_rightLeader = new PWMVictorSPX(Constants.DriveConstants.kLeftLeader);
-  private final PWMVictorSPX m_rightFollower = new PWMVictorSPX(Constants.DriveConstants.kLeftLeader);
-
+  private final PWMVictorSPX m_leftFollower = new PWMVictorSPX(Constants.DriveConstants.kLeftFollower);
+  private final PWMVictorSPX m_rightLeader = new PWMVictorSPX(Constants.DriveConstants.kRightLeader);
+  private final PWMVictorSPX m_rightFollower = new PWMVictorSPX(Constants.DriveConstants.kRightFollower);
+  
   private final MotorControllerGroup left = new MotorControllerGroup(m_leftLeader, m_leftFollower);
   private final MotorControllerGroup right = new MotorControllerGroup(m_rightLeader, m_rightFollower);
 
@@ -63,10 +72,7 @@ public class DriveSubsystem extends SubsystemBase {
       new Pose2d(4, 5, new Rotation2d()));
 
   public DriveSubsystem() {
-
-    right.setInverted(true);
-
-
+    
     // Set Encoder pulses
     m_leftEncoder.setDistancePerPulse((0.1524 * Math.PI) / (double) 1024);
     m_rightEncoder.setDistancePerPulse((0.1524 * Math.PI) / (double) 1024);

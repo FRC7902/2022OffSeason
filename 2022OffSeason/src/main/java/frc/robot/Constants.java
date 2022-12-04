@@ -19,7 +19,7 @@ package frc.robot;
 public final class Constants {
 
     public final static class DriveConstants {
-
+        //CAN
         // PWM ports for drive motors
         public static final int kLeftLeader = 0;
         public static final int kLeftFollower = 1;
