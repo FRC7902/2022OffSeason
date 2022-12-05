@@ -21,7 +21,7 @@ public final class Constants {
         public final static int DrivetrainLeftFollowerCAN = 12;
 
         public final static int CurrentLimit = 50;
-        
+
     }
     public final static class ShooterConstants{
         public final static int ShooterLeaderCAN = 8;
@@ -36,13 +36,27 @@ public final class Constants {
     public final static class IntakeConstants{
         public final static int IntakePowerCAN = 13;
         public final static int IntakeDeploymentCAN = 10;
+
+        public final static int IntakeDeploymentForwardPCMChannel = 3;
+        public final static int IntakeDeploymentReversePCMChannel = 4;
+
+        public final static double IntakeDeploymentOuputGearRatio = 130.67;
+        public final static double IntakePowerOutputGearRatio = 9.0;
+
+        public final static double IntakeDeploymentPercentOut = 0.75; 
     }
     public final static class TransferConstants{
         public final static int TransferCAN = 5;
+        public final static double VerticalTransferRampTimeInSeconds = 1.5;
+        public final static double VerticalTransferUpPower = 0.35;
+        public final static double VerticalTransferOutputGearRatio = 7.0;
     }
     public final static class ClimberRopeConstants{
         public final static int Rope1CAN = 14;
         public final static int Rope2CAN = 2;
         public final static int Rope1CurrentLimit = 20;
+
+        public final static double MainRopeGearRatio = 48.0;
+        public final static double AdjustmentRopeGearRatio = 28.0;
     }
 }

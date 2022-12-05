@@ -13,13 +13,14 @@ public class TransferSubsystem extends SubsystemBase {
   private final WPI_VictorSPX transferMotor = new WPI_VictorSPX(Constants.TransferConstants.TransferCAN);
   public TransferSubsystem() {
     transferMotor.setInverted(false);
+    transferMotor.configOpenloopRamp(Constants.TransferConstants.VerticalTransferRampTimeInSeconds);
   }
 
   public void setPower(double power){
       transferMotor.set(power);
   }
   public void stopMotor(){
-      transferMotor.stopMotor();
+      transferMotor.set(0);
   }
   @Override
   public void periodic() {
