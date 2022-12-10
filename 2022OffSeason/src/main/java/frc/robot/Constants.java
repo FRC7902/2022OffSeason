@@ -32,4 +32,43 @@ public final class Constants {
         public final static double ShooterOutputGearRatio = 3.75;
 
     }
+
+    public final static class ElevatorConstants{
+
+        public final static int ElevatorCAN = 1;
+        public final static int ElevatorCurrentLimit = 25;
+
+    }
+
+    public final static class TransferConstants {
+
+        public final static int VerticalTransferCAN = 5;
+        public final static double VerticalTransferRampTimeInSeconds = 1.5;
+        public final static double VerticalTransferUpPower = 0.35;
+        public final static double VerticalTranferOutputGearRatio = 7.0;
+
+    }
+
+    public final static class IntakeConstants{
+
+        public final static int IntakeDeploymentCAN = 10;
+        public final static int IntakePowerCAN = 13;
+
+        public final static double IntakePowerOutputGearRatio = 9.0;
+        public final static double IntakeDeploymentOutputGearRatio = 130.67;
+        
+        public final static int IntakeDeploymentForwardPCMChannel = 3;
+        public final static int IntakeDeploymentReversePCMChannel = 4;
+
+        public final static double IntakeDeploymentPercentOut = 0.75;
+    }
+
+    public final static class RopeConstants {
+        public final static int MainRopeCAN = 14;
+        public final static int AdjustmentRopeCAN = 2;
+
+        public final static double MainRopeOutputGearRatio = 48.0;
+        public final static double AdjustmentRopeGearRatio = 28.0;
+
+    }
 }

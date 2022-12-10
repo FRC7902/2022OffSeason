@@ -168,6 +168,8 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
+
+    drive.arcadeDrive(1, 0);
     switch (m_autoSelected) {
       case kCustomAuto:
         // Put custom auto code here
@@ -201,6 +203,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     drive.arcadeDrive(-joystick.getX() * 0.5, -joystick.getY());
+
 
   }
 
