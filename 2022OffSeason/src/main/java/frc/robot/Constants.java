@@ -36,18 +36,41 @@ public final class Constants {
     }
 
     public final static class TransferConstants{
-        public final static int TransferVertical = 5;
+        public final static int TransferVerticalCAN = 5;
+        public final static double VerticalTransferRampTimeInSeconds = 1.5;
+        public final static double VerticalTransferUpPower = 0.35;
         public final static double TransferVerticalGearRatio = 7;
     }
 
     public final static class ClimberRopeConstants{
-        public final static int ClimberRopeAdjustment = 2;
-        public final static int ClimberRopeMain = 14;
+        public final static int ClimberRopeAdjustmentCAN = 2;
+        public final static int ClimberRopeMainCAN = 14;
 
         public final static double ClimberRopeAdjustmentGearRatio = 28;
         public final static double ClimberRopeMainGearRatio = 48;
     }
 
+    public final static class ElevatorConstants {
 
+        public final static int ElevatorCAN = 1;
+
+        public final static int ElevatorCurrentLimit = 25;
+    }
+
+    public final static class IntakeConstants {
+
+        public final static int IntakeDeploymentCAN = 10;
+        public final static int IntakePowerCAN = 13;
+
+        public final static int IntakeDeploymentForwardPCMChannel = 3;
+        public final static int IntakeDeploymentReversePCMChannel = 4;
+
+        public final static double IntakeDeploymentOutputGearRatio = 130.67;
+        public final static double IntakePowerOutputGearRatio = 9.0;
+
+
+        public final static double IntakeDeploymentPercentOut = 0.75;
+
+    }
 
 }

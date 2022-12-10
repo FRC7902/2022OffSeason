@@ -6,7 +6,7 @@ import frc.robot.Constants;
 
 public class ClimberRopeSubsystem extends SubsystemBase{
 
-    private final WPI_VictorSPX ClimberRopeAdjustment = new WPI_VictorSPX(Constants.ClimberRopeConstants.ClimberRopeAdjustment);
+    private final WPI_VictorSPX ClimberRopeAdjustment = new WPI_VictorSPX(Constants.ClimberRopeConstants.ClimberRopeAdjustmentCAN);
     //still need to declare new Spark Max motor for climber rope main
 
     //Sets output power

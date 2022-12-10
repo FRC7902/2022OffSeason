@@ -8,7 +8,7 @@ import frc.robot.Constants;
 
 public class TransferSubsystem extends SubsystemBase{
     
-    private final WPI_VictorSPX transferController = new WPI_VictorSPX(Constants.TransferConstants.TransferVertical);
+    private final WPI_VictorSPX transferController = new WPI_VictorSPX(Constants.TransferConstants.TransferVerticalCAN);
 
     public TransferSubsystem(){
         transferController.setInverted(true);
