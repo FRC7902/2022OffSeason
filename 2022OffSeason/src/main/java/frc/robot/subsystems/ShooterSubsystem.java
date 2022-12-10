@@ -4,11 +4,27 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
+import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.ShooterConstants;
 
 public class ShooterSubsystem extends SubsystemBase {
+  private final WPI_VictorSPX m_leader = new WPI_VictorSPX(ShooterConstants.kShooterLeaderCAN);
+  private final WPI_VictorSPX m_follower = new WPI_VictorSPX(ShooterConstants.kShooterFollowerCAN);
+
+
+
   /** Creates a new ShooterSubsystem. */
-  public ShooterSubsystem() {}
+  public ShooterSubsystem() {
+    m_follower.follow(m_leader);
+    m_leader.setInverted(false);
+    m_follower.setInverted(InvertType.FollowMaster);
+
+  }
 
   @Override
   public void periodic() {

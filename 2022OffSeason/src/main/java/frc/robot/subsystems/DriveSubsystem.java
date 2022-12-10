@@ -17,9 +17,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
+import frc.robot.Constants.DriveConstants;
 import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
 import edu.wpi.first.wpilibj.simulation.EncoderSim;
 
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
@@ -37,16 +39,17 @@ import edu.wpi.first.wpilibj.RobotBase;
 
 public class DriveSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  private final PWMVictorSPX m_leftLeader = new PWMVictorSPX(Constants.DriveConstants.kLeftLeader);
-  private final PWMVictorSPX m_leftFollower = new PWMVictorSPX(Constants.DriveConstants.kLeftFollower);
-  private final PWMVictorSPX m_rightLeader = new PWMVictorSPX(Constants.DriveConstants.kRightLeader);
-  private final PWMVictorSPX m_rightFollower = new PWMVictorSPX(Constants.DriveConstants.kRightFollower);
+  private final WPI_TalonSRX m_leftLeader = new WPI_TalonSRX(Constants.DriveConstants.kLeftLeader);
+  private final WPI_VictorSPX m_leftFollower = new WPI_VictorSPX(Constants.DriveConstants.kLeftFollower);
+  private final WPI_TalonSRX m_rightLeader = new WPI_TalonSRX(Constants.DriveConstants.kRightLeader);
+  private final WPI_VictorSPX m_rightFollower = new WPI_VictorSPX(Constants.DriveConstants.kRightFollower);
   
-  private final MotorControllerGroup left = new MotorControllerGroup(m_leftLeader, m_leftFollower);
-  private final MotorControllerGroup right = new MotorControllerGroup(m_rightLeader, m_rightFollower);
+  // //groups motors together
+  // private final MotorControllerGroup left = new MotorControllerGroup(m_leftLeader, m_leftFollower);
+  // private final MotorControllerGroup right = new MotorControllerGroup(m_rightLeader, m_rightFollower);
 
   //differential drive: a robot with both left and right wheels
-  private final DifferentialDrive drive = new DifferentialDrive(left, right);
+  private final DifferentialDrive drive = new DifferentialDrive(m_leftLeader, m_rightLeader);
 
   // // Encoders
   // private final Encoder m_leftEncoder = new Encoder(
@@ -72,8 +75,23 @@ public class DriveSubsystem extends SubsystemBase {
   //     new Pose2d(4, 5, new Rotation2d()));
 
   public DriveSubsystem() {
+    m_leftLeader.configFactoryDefault();
+    m_rightLeader.configFactoryDefault();
 
-    right.setInverted(true);
+    m_leftFollower.follow(m_leftLeader);
+    m_rightFollower.follow(m_rightLeader);
+    m_rightFollower.setInverted(InvertType.FollowMaster);
+    m_leftFollower.setInverted(InvertType.FollowMaster);
+
+    m_leftLeader.enableCurrentLimit(true);
+    m_rightLeader.enableCurrentLimit(true);
+
+    m_leftLeader.configPeakCurrentLimit(DriveConstants.kLeftCurrentLimit);
+    m_rightLeader.configPeakCurrentLimit(DriveConstants.kRightCurrentLimit);
+    m_leftLeader.configPeakCurrentDuration(0);
+    m_rightLeader.configPeakCurrentDuration(0);
+
+    
 
     // // Set Encoder pulses
     // m_leftEncoder.setDistancePerPulse((0.1524 * Math.PI) / (double) 1024);
@@ -98,9 +116,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void driveArcade(double xForward, double zRotation) {
-
     drive.arcadeDrive(xForward, zRotation);
-
   }
 
   // public Pose2d getPose() {

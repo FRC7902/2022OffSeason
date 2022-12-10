@@ -26,6 +26,8 @@ public final class Constants {
         public static final int kRightLeader = 11;
         public static final int kRightFollower = 12;
 
+        public static final int kLeftCurrentLimit = 50;
+        public static final int kRightCurrentLimit = 50;
 
         public static final int kLeftEncoderA = 0;
         public static final int kLeftEncoderB = 1; 
@@ -38,12 +40,27 @@ public final class Constants {
         public static final int gyroChannel = 1;
     }
     public final static class ShooterConstants{
-        
+        public static final int kShooterLeaderCAN = 8;
+        public static final int kShooterFollowerCAN = 9;
 
     }
     public final static class TransferConstants{
         public static final int kTransferCAN = 5;
+        
         public static final double kRampTime = 0;
+    }
+    public final static class ElevatorConstants{
+        public static final int kElevatorCAN = 1;
+        public static final int kCurrentLimit = 25;
+        public static final int kStopValue = 0;
+
+    }
+    
+    public final static class IntakeConstants{
+        public static final int kIntakePowerCAN = 13;
+        public static final int kIntakeDepCAN = 10;
+        public static final double kPowerRampTime = 0;
+        public static final double kDeplRampTime = 0;
     }
 
 }

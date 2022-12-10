@@ -5,10 +5,13 @@
 package frc.robot.commands.transfer;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.TransferSubsystem;
 
-public class TransferUp extends CommandBase {
+public class TransferUpCommand extends CommandBase {
+  private TransferSubsystem transferSubsystem;
+
   /** Creates a new TransferUp. */
-  public TransferUp() {
+  public TransferUpCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
