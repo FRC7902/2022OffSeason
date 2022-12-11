@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.DriveSubsystem;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 
@@ -36,7 +37,7 @@ public class RobotContainer {
 
     m_DriveSubsystem.setDefaultCommand(
       new RunCommand(
-        () -> m_DriveSubsystem.driveArcade(m_driveJoystick.getRawAxis(0), m_driveJoystick.getRawAxis(4)), 
+        () -> m_DriveSubsystem.driveArcade(m_driveJoystick.getRawAxis(1), m_driveJoystick.getRawAxis(4)), 
         m_DriveSubsystem)
     );
 

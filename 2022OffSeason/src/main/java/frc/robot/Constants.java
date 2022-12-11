@@ -20,8 +20,8 @@ public final class Constants {
 
     public static final class DriveConstants{
 
-        public final static int DrivetrainRightLeaderCAN = 3;
-        public final static int DrivetrainRightFollowerCAN = 4;
+        public final static int DrivetrainRightLeaderCAN = 4;
+        public final static int DrivetrainRightFollowerCAN = 3;
 
         public final static int DrivetrainLeftLeaderCAN = 11;
         public final static int DrivetrainLeftFollowerCAN = 12;

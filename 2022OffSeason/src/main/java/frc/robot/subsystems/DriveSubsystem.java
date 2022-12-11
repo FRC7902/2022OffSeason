@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -29,10 +31,10 @@ import edu.wpi.first.wpilibj.RobotBase;
 public class DriveSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
 
-  private final PWMVictorSPX m_leftLeader = new PWMVictorSPX(Constants.DriveConstants.DrivetrainLeftLeaderCAN);
-  private final PWMVictorSPX m_leftFollower = new PWMVictorSPX(Constants.DriveConstants.DrivetrainLeftFollowerCAN);
-  private final PWMVictorSPX m_rightLeader = new PWMVictorSPX(Constants.DriveConstants.DrivetrainRightLeaderCAN);
-  private final PWMVictorSPX m_rightFollower = new PWMVictorSPX(Constants.DriveConstants.DrivetrainRightFollowerCAN);
+  private final WPI_TalonSRX m_leftLeader = new WPI_TalonSRX(Constants.DriveConstants.DrivetrainLeftLeaderCAN);
+  private final WPI_VictorSPX m_leftFollower = new WPI_VictorSPX(Constants.DriveConstants.DrivetrainLeftFollowerCAN);
+  private final WPI_TalonSRX m_rightLeader = new WPI_TalonSRX(Constants.DriveConstants.DrivetrainRightLeaderCAN);
+  private final WPI_VictorSPX m_rightFollower = new WPI_VictorSPX(Constants.DriveConstants.DrivetrainRightFollowerCAN);
 
   private final MotorControllerGroup left = new MotorControllerGroup(m_leftLeader, m_leftFollower);
   private final MotorControllerGroup right = new MotorControllerGroup(m_rightLeader, m_rightFollower);
@@ -64,7 +66,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   public DriveSubsystem() {
 
-    right.setInverted(true);
+    left.setInverted(true);
 
 
     // Set Encoder pulses
@@ -92,7 +94,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void driveArcade(double xForward, double zRotation) {
 
-    drive.arcadeDrive(xForward, zRotation);
+    drive.arcadeDrive(xForward, -zRotation);
 
   }
 
