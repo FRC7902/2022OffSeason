@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.simulation.AnalogGyroSim;
 import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
 import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim.*;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.math.geometry.Pose2d;
@@ -31,9 +32,9 @@ import edu.wpi.first.wpilibj.RobotBase;
 public class DriveSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
 
-  private final WPI_VictorSPX m_leftLeader = new WPI_VictorSPX(Constants.DriveConstants.DrivetrainLeftLeaderCAN);
+  private final WPI_TalonSRX m_leftLeader = new WPI_TalonSRX(Constants.DriveConstants.DrivetrainLeftLeaderCAN);
   private final WPI_VictorSPX m_leftFollower = new WPI_VictorSPX(Constants.DriveConstants.DrivetrainLeftFollowerCAN);
-  private final WPI_VictorSPX m_rightLeader = new WPI_VictorSPX(Constants.DriveConstants.DrivetrainRightLeaderCAN);
+  private final WPI_TalonSRX m_rightLeader = new WPI_TalonSRX(Constants.DriveConstants.DrivetrainRightLeaderCAN);
   private final WPI_VictorSPX m_rightFollower = new WPI_VictorSPX(Constants.DriveConstants.DrivetrainRightFollowerCAN);
 
   private final MotorControllerGroup left = new MotorControllerGroup(m_leftLeader, m_leftFollower);
@@ -66,7 +67,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   public DriveSubsystem() {
 
-    right.setInverted(true);
+    left.setInverted(true);
 
 
     // Set Encoder pulses

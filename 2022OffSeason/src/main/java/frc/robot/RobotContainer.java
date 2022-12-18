@@ -25,7 +25,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem m_DriveSubsystem = new DriveSubsystem();
 
-  private final DriveCommand m_DriveCommand = new DriveCommand(m_DriveSubsystem);
+ 
 
   private final Joystick m_driveJoystick = new Joystick(0);
 
@@ -36,7 +36,7 @@ public class RobotContainer {
 
     m_DriveSubsystem.setDefaultCommand(
       new RunCommand(
-        () -> m_DriveSubsystem.driveArcade(m_driveJoystick.getRawAxis(0), m_driveJoystick.getRawAxis(4)), 
+        () -> m_DriveSubsystem.driveArcade(m_driveJoystick.getRawAxis(1), -m_driveJoystick.getRawAxis(4)), 
         m_DriveSubsystem)
     );
 

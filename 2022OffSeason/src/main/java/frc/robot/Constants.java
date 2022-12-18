@@ -20,8 +20,8 @@ public final class Constants {
 
     public final static class DriveConstants{
 
-        public final static int DrivetrainRightLeaderCAN = 3;
-        public final static int DrivetrainRightFollowerCAN = 4;
+        public final static int DrivetrainRightLeaderCAN = 4;
+        public final static int DrivetrainRightFollowerCAN = 3;
 
         public final static int DrivetrainLeftLeaderCAN = 11;
         public final static int DrivetrainLeftFollowerCAN = 12;
@@ -37,6 +37,21 @@ public final class Constants {
         // Gearing ratio between output shaft and input motor 
         // (for every 3.75 rotations of input, output spins once)
         public final static double ShooterOutputGearRatio = 3.75;
+
+        // Encoder Incremental/Quadrature inputs
+        public final static int encoderA_DIO = 0;
+        public final static int encoderB_DIO = 1;
+
+        // Encoder counts per revolution
+        public final static double encoderCPR = 8192.0;
+
+        // Shooter RPM setpoints
+        public final static double highGoalRPM = 3000.0;
+
+        // Feedforward constants
+        public final static double kV = 0.00208;
+        public final static double kS = 0.31747;
+
     }
 
     public final static class ElevatorConstants {
